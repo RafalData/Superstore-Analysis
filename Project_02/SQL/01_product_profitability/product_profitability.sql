@@ -170,14 +170,29 @@ ORDER BY SUM_Zysk ASC;
 -- 0%	            184.39	    13276.29	72
 
 -- Wniosek:
--- Rabaty maja bezposredni wplyw na rentownosc w kategorii Tables.
+-- Rabaty wykazuja silna zaleznosc z rentownoscia.
 -- Najwieksze straty generuja produkty z rabatami powyzej 20%.
--- Grupa 20-40% odpowiada za najwieksza laczna strate ze wzgledu na duza liczbe transakcji.
+-- Grupa 20-40% odpowiada za najwieksza strate ze wzgledu na duza liczbe transakcji.
 -- Produkty z rabatami 40%+ maja najwyzsza srednia strate na transakcje.
 -- Produkty bez rabatow sa rentowne i generuja wysoki sredni zysk.
 
--- Rekomendacja:
--- Nalezy ograniczyc poziom rabatow powyzej 20% w kategorii Tables.
--- Skupic sie na optymalizacji produktow z rabatami 20-40%, ktore generuja najwieksza strate.
--- Dla produktow z bardzo wysokimi rabatami (40%+) rozwazyc zmiane strategii cenowej lub ograniczenie sprzedazy.
--- Warto przeprowadzic testy cenowe aby sprawdzic wplyw zmian na sprzedaz i zysk.
+--------------------------------------------------------------------------------------------
+--Czy wszystkie wysokie rabaty oznaczają stratę, czy są też produkty z dużym rabatem, które nadal zarabiają
+--------------------------------------------------------------------------------------------
+
+SELECT
+    [Product Name],
+    AVG([Discount]) AS AVG_DISCOUNT,
+    SUM(Sales) as SUM_SALES,
+    SUM(Profit) as SUM_PROFIT,
+    ROUND(SUM(Profit) / SUM(Sales) * 100.0,2) AS Profit_Margin
+From ['Superstore']
+Where [Sub-Category] = 'Tables'
+GROUP BY [Product Name]
+ORDER BY SUM(PROFIT) asc
+
+-- Wnioski:
+-- W analizowanym zbiorze nie występują produkty osiągające dodatnią rentowność przy średnim rabacie przekraczającym 30%.
+-- Średnie i wysokie rabaty są związane z nniską rentownością produktów. 
+-- Jednocześnie część produktów generuje straty mimo niskiego rabatu, co pokazuje, że rabat nie jest jedynym czynnikiem wpływającym na wynik finansowy.
+-- Wysoki rabat jest związanym ze stratami, jednak analiza pokazuje, że do pełnego wyjaśnienia konieczniee trzeba uwzględnienić dodatkowe dane. Niestety obecny zbiór danych jest ograniczony.
