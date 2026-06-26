@@ -8,11 +8,11 @@
 -- Pytania:
 -- 1. Jak wygląda ogólna rentowność firmy?
 -- 2. Które kategorie i sub-kategorie odpowiadają za zysk oraz straty?
--- 3. Czy rabaty mogą być związane z niską rentownością?
+-- 3. Czy poziom rabatów jest związany z rentownością produktów?
 
 -- Dodatkowe analizy
 -- Identyfikacja produktów odpowiedzialnych za niską rentowność kategorii Furniture.
--- Ocena udziału produktów stratnych w całkowitej sprzedaży kategorii Tables.
+-- Ocena, czy wysokie rabaty są wystarczającym wyjaśnieniem strat produktów.
 
 
 --------------------------------------------------------------------------------------------
