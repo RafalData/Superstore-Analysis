@@ -26,7 +26,7 @@ ORDER BY Zysk desc
 
 -- Wnioski:
 -- Najwyższą sprzedaż, zysk i marżę generuje region WEST.
--- Region Central osiąga najniższą rentowność.
+-- Region Central osiąga najniższą rentowność. <- Dalsza analiza skupi się na tym rejonie.
 -- Region South osiąga najniższą wartość sprzedaży.
 -- Marża regionu Central (7.92%) jest wyraźnie niższa od marży regionu West (14.94%).
 
@@ -65,7 +65,8 @@ ORDER BY Zysk desc
 --  Wnioski: 
 -- Texas i Illinois zajmują pierwsze miejsca pod względem wartości sprzedaży, 
 -- jednocześnie będąc jedynymi stanami w regionie Central generującymi straty.
--- Mają wyraźny wpływ ma wynik całego regionu.
+-- Z racji nawyżej sprzedaży oraz ujemny wynik finansowy Texas i Illinois prawodopodobnie mają
+-- najwyższy wpływ na rentowność regionu Central.
 -- Najwyższą marżę generują Indiana, Michigan, Minnesota oraz South Dakota (powyżej 30%).
 
 -- Rekomendacje:
@@ -140,7 +141,16 @@ ORDER BY Zysk, [Sub-Category]
 -- Subkategoria Binders generuje największą stratę (-21,9 tys.),
 -- mimo że odpowiada za jedynie 5,42% całkowitej sprzedaży analizowanych stanów.
 -- udział w całkowitej sprzedaży to nie całe 5,5%.
--- Sub-kategorie przynoszące starty to Binders, Appliances, Tables, Furnishings, Chairs, Bookcases, 
--- Machines oraz Storage.
+-- Większość strat generuje kilka sub-kategorii. Największy udział mają Binders, Appliances oraz Tables.
 -- Subkategoria Phones odpowiada za największy udział w sprzedaży (18,12%) i pozostaje rentowna, 
--- natomiast Chairs odpowiada za 16,43% sprzedaży, jednocześnie generując straty.
+-- natomiast Chairs odpowiada za 16,43% sprzedaży, jednocześnie generuje ponad 4 tyś starty.
+
+-- ============================================================
+-- Podsumowanie
+-- ============================================================
+-- Najniższą rentowność osiąga region Central.
+-- Za słaby wynik odpowiadają przede wszystkim Texas i Illinois.
+-- W obu stanach największe straty generują Furniture i Office Supplies.
+-- Największym problemem jest sub-kategoria Binders.
+-- Warto rozpocząć analizę polityki cenowej
+-- oraz struktury sprzedaży produktów z tej sub-kategorii.
