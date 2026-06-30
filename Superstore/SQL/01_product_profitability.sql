@@ -37,7 +37,7 @@ FROM ['Superstore']
 -- Rekomendacje:
 -- Nalezy zidentyfikowac produkty generujace straty.
 -- Ograniczyc sprzedaz produktow z niska lub ujemna marza lub dostosowac ich ceny.
--- Przeanalizowac rabaty aby odnalezc glowna przyczyne strat i poprawic rentownosc.
+-- Przeanalizowac wpływ rabatów aby określić przyczyne strat.
 
 --------------------------------------------------------------------------------------------
 -- Ktora kategoria generuje najwiekszy przychod i najwiekszy zysk?
@@ -85,8 +85,8 @@ ORDER BY SUM(Profit) ASC
 
 -- Wniosek:
 -- Straty generuja trzy Sub-Kategorie: Tables, Bookcases, Supplies
--- Machines operuje na bardzo niskiej marzy, niska rentownosc.
--- Paper, Envelopes, Labels generuja wysoka marze i wysokie zyski.
+-- Machines operuje na bardzo niskiej marży(1,79%), niska rentownosc.
+-- Wysoką marżę generują Paper(43.39%), Envelopes(42.27%), Labels(44.42%), przyczyniając się do wysokiej rentowności i zysków
 
 -- Rekomendacje:
 -- Przeprowadzic analize Tables, Bookcases, Supplies w poszukiwaniu produktow, ktore generuja starty.
@@ -107,14 +107,12 @@ ORDER BY SUM(profit) ASC
 --Za jaki % sprzedaży odpowiadają produkty stratne?
 
 SELECT
-    SUM(Sales) AS Total_Sales
-FROM ['superstore']
-WHERE [Sub-Category] = 'Tables';
-
-206965.5320
-
-SELECT
-    SUM(Sales) AS Loss_Product_Sales
+    SUM(Sales) * 100.0 /
+    (
+        SELECT SUM(Sales)
+        FROM ['Superstore']
+        WHERE [Sub-Category] = 'Tables'
+    ) AS Loss_Sales_Percentage
 FROM
 (
     SELECT
@@ -126,9 +124,9 @@ FROM
     GROUP BY [Product Name]
     HAVING SUM(Profit) < 0
 ) x;
-162823.6165
 
-162823.62 / 206965.53 * 100 = 78.67%
+-- Loss_Sales_Percentage
+-- 78.67%
 
 -- Produkty stratne stanowią około 75% portfolio produktów kategorii Tables (42 z 56 produktów). 
 -- Odpowiadają za 79% całkowitej sprzedaży kategorii Tables.
